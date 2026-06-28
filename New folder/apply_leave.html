@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Leave - Online Leave Application System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    min-height:100vh;
+}
+
+.leave-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:30px;
+}
+
+.leave-box{
+    width:700px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    color:white;
+}
+
+.leave-box h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+.form-group textarea{
+    resize:none;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#1e3a8a;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#dbeafe;
+}
+
+@media(max-width:768px){
+    .leave-box{
+        width:100%;
+        padding:25px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="leave-container">
+
+<div class="leave-box">
+
+<h2>📝 Apply Leave</h2>
+
+<form id="leaveForm">
+
+<div class="form-group">
+<label for="fullname">Full Name</label>
+<input type="text" id="fullname" required>
+</div>
+
+<div class="form-group">
+<label for="department">Department</label>
+<select id="department" required>
+<option value="">Select Department</option>
+<option>Computer Engineering</option>
+<option>Information Technology</option>
+<option>Mechanical Engineering</option>
+<option>Civil Engineering</option>
+<option>Electrical Engineering</option>
+<option>Electronics Engineering</option>
+<option>Administration</option>
+<option>Human Resources (HR)</option>
+<option>Finance</option>
+<option>Marketing</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="leaveType">Leave Type</label>
+<select id="leaveType" required>
+<option value="">Select Leave Type</option>
+<option>Sick Leave</option>
+<option>Casual Leave</option>
+<option>Emergency Leave</option>
+<option>Annual Leave</option>
+<option>Maternity Leave</option>
+<option>Paternity Leave</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="fromDate">From Date</label>
+<input type="date" id="fromDate" required>
+</div>
+
+<div class="form-group">
+<label for="toDate">To Date</label>
+<input type="date" id="toDate" required>
+</div>
+
+<div class="form-group">
+<label for="days">Total Days</label>
+<input type="text" id="days" readonly>
+</div>
+
+<div class="form-group">
+<label for="reason">Reason for Leave</label>
+<textarea id="reason" rows="5" required></textarea>
+</div>
+
+<button type="submit" class="submit-btn">
+Submit Leave Request
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+const fromDate = document.getElementById("fromDate");
+const toDate = document.getElementById("toDate");
+const daysField = document.getElementById("days");
+
+function calculateDays(){
+
+    if(fromDate.value && toDate.value){
+
+        let start = new Date(fromDate.value);
+        let end = new Date(toDate.value);
+
+        let difference =
+        Math.ceil((end - start)/(1000*60*60*24)) + 1;
+
+        if(difference > 0){
+            daysField.value = difference + " Day(s)";
+        }else{
+            daysField.value = "";
+        }
+    }
+}
+
+fromDate.addEventListener("change", calculateDays);
+toDate.addEventListener("change", calculateDays);
+
+document.getElementById("leaveForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    if(new Date(toDate.value) < new Date(fromDate.value)){
+        alert("To Date cannot be earlier than From Date");
+        return;
+    }
+
+    const leaveData = {
+        fullname: document.getElementById("fullname").value,
+        department: document.getElementById("department").value,
+        leaveType: document.getElementById("leaveType").value,
+        fromDate: document.getElementById("fromDate").value,
+        toDate: document.getElementById("toDate").value,
+        totalDays: document.getElementById("days").value,
+        reason: document.getElementById("reason").value,
+        status: "Pending"
+    };
+
+    let leaveHistory =
+    JSON.parse(localStorage.getItem("leaveHistory")) || [];
+
+    leaveHistory.push(leaveData);
+
+    localStorage.setItem(
+        "leaveHistory",
+        JSON.stringify(leaveHistory)
+    );
+
+    alert("Leave Request Submitted Successfully!");
+
+    window.location.href = "leave_history.html";
+});
+
+</script>
+
+</body>
+</html>

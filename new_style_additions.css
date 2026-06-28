@@ -1,0 +1,141 @@
+
+/* complete_profile.html specific styles */
+
+.profile-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
+    padding: 40px 8%;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #38bdf8; /* Accent color */
+}
+
+.profile-header p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#profileForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 280px; /* Ensure fields don't get too small */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group label i {
+    color: #38bdf8; /* Accent color for icons */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group select option {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #38bdf8;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Style for readonly inputs */
+.form-group input[readonly] {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: not-allowed;
+}
+
+/* Date input specific styles */
+.form-group input[type="date"] {
+    /* Mute default calendar icon if possible or style it */
+    filter: invert(1); /* Tries to make calendar icon white */
+}
+/* Ensure option text is readable in select */
+.form-group select option {
+    color: #000; /* Dark text for options */
+    background-color: #fff; /* White background for options */
+}
+
+/* Override default button style with theme's .btn */
+#profileForm .btn {
+    align-self: center;
+    width: fit-content;
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+/* Responsive adjustments for form */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .form-group {
+        min-width: unset;
+    }
+    .form-container {
+        padding: 25px;
+        border-radius: 20px;
+    }
+    .profile-header h2 {
+        font-size: 30px;
+    }
+    .profile-section {
+      padding: 20px 5%;
+    }
+}

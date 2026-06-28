@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Employee Profile</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+min-height:100vh;
+background:linear-gradient(135deg,#081c6b,#2453ff,#7b2cff);
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:linear-gradient(90deg,#2563eb,#a855f7);
+backdrop-filter:blur(12px);
+}
+
+.logo{
+color:white;
+font-size:28px;
+font-weight:bold;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:bold;
+transition:.3s;
+}
+
+nav a:hover{
+color:#5af3ff;
+}
+
+/* CONTAINER */
+
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px 20px;
+}
+
+/* CARD */
+
+.profile-card{
+width:850px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border-radius:25px;
+padding:40px;
+border:1px solid rgba(255,255,255,.2);
+box-shadow:0 0 40px rgba(0,0,0,.35);
+}
+
+/* PROFILE TOP */
+
+.profile-header{
+text-align:center;
+margin-bottom:35px;
+}
+
+.avatar{
+width:130px;
+height:130px;
+margin:auto;
+border-radius:50%;
+background:linear-gradient(135deg,#00c6ff,#7d2cff);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:60px;
+color:white;
+box-shadow:0 0 25px #3f8cff;
+}
+
+.profile-header h2{
+margin-top:18px;
+color:white;
+font-size:36px;
+}
+
+.profile-header p{
+margin-top:8px;
+color:#ddd;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+.form-group label{
+display:block;
+color:white;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+.form-group label i{
+margin-right:8px;
+color:#6edcff;
+}
+
+.form-group input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:rgba(255,255,255,.10);
+color:white;
+font-size:16px;
+outline:none;
+}
+
+.form-group input::placeholder{
+color:#ddd;
+}
+
+.form-group input[readonly]{
+cursor:not-allowed;
+}
+
+.actions{
+margin-top:30px;
+text-align:center;
+}
+
+.btn{
+padding:15px 35px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#2563eb,#a855f7);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+margin:5px;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #48b8ff;
+}
+footer{
+margin-top:50px;
+text-align:center;
+padding:20px;
+background:rgba(0,0,0,.2);
+color:white;
+}
+
+@media(max-width:768px){
+header{
+flex-direction:column;
+}
+
+nav{
+margin-top:15px;
+}
+
+nav a{
+display:inline-block;
+margin:8px;
+}
+
+.profile-card{
+padding:25px;
+}
+}
+
+</style>
+</head>
+<body>
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-calendar-check"></i>
+Leave Management System
+</div>
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="apply_leave.html">Apply Leave</a>
+<a href="leave_history.html">Leave History</a>
+<a href="profile.html">Profile</a>
+<a href="index.html">Home</a>
+<a href="login.html">Logout</a>
+</nav>
+</header>
+
+<div class="container">
+<div class="profile-card">
+<div class="profile-header">
+<div class="avatar">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+<h2>Employee Profile</h2>
+<p>Manage your profile information</p>
+</div>
+<div class="form-group">
+<label>
+
+<i class="fa-solid fa-user"></i>
+
+Full Name
+</label>
+<input
+type="text"
+id="fullname"
+readonly>
+
+</div>
+<div class="form-group">
+<label>
+
+<i class="fa-solid fa-envelope"></i>
+
+Email Address
+</label>
+<input
+type="email"
+id="email"
+readonly>
+
+</div>
+<div class="form-group">
+<label>
+
+<i class="fa-solid fa-building"></i>
+
+Department
+</label>
+<input
+type="text"
+id="department"
+readonly>
+
+</div>
+<div class="form-group">
+<label>
+
+<i class="fa-solid fa-phone"></i>
+
+Phone Number
+</label>
+
+<input
+type="text"
+id="phone"
+readonly>
+
+</div>
+<div class="actions">
+<button
+class="btn"
+onclick="enableEdit()">
+<i class="fa-solid fa-user-pen"></i>
+
+Edit Profile
+</button>
+<button
+class="btn"
+id="saveBtn"
+style="display:none;"
+onclick="saveProfile()">
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Changes
+</button>
+</div>
+</div>
+</div>
+<script>
+
+// Page Load
+window.onload = function(){
+
+    document.getElementById("fullname").value =
+        localStorage.getItem("userName") || "";
+
+    document.getElementById("email").value =
+        localStorage.getItem("userEmail") || "";
+
+    document.getElementById("department").value =
+        localStorage.getItem("userDepartment") || "";
+
+    document.getElementById("phone").value =
+        localStorage.getItem("userPhone") || "";
+};
+
+// Enable Edit
+function enableEdit(){
+
+    document.getElementById("fullname").readOnly = false;
+    document.getElementById("email").readOnly = false;
+    document.getElementById("department").readOnly = false;
+    document.getElementById("phone").readOnly = false;
+    document.getElementById("saveBtn").style.display = "inline-block";
+
+}
+
+// Save Profile
+function saveProfile(){
+
+    localStorage.setItem(
+        "userName",
+        document.getElementById("fullname").value
+    );
+
+    localStorage.setItem(
+        "userEmail",
+        document.getElementById("email").value
+    );
+
+    localStorage.setItem(
+        "userDepartment",
+        document.getElementById("department").value
+    );
+
+    localStorage.setItem(
+        "userPhone",
+        document.getElementById("phone").value
+    );
+
+    document.getElementById("fullname").readOnly = true;
+    document.getElementById("email").readOnly = true;
+    document.getElementById("department").readOnly = true;
+    document.getElementById("phone").readOnly = true;
+    document.getElementById("saveBtn").style.display = "none";
+
+    alert("✅ Profile Updated Successfully!");
+}
+</script>
+</body>
+</html>

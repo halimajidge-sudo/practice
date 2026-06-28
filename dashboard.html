@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1447d2,#7c3aed);
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:280px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:linear-gradient(180deg,#2a04ff,#00339a,#2a04ff);
+    color:white;
+}
+
+.sidebar h2{
+    text-align:center;
+    padding:30px 20px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.sidebar a{
+    display:block;
+    padding:18px 25px;
+    color:white;
+    text-decoration:none;
+    margin:10px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.sidebar a.active{
+    background:linear-gradient(90deg,#1f6bff,#2ea8ff);
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,.1);
+}
+
+/* Main Content */
+.main-content{
+    margin-left:280px;
+    width:calc(100% - 280px);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.container{
+    padding:30px;
+    flex:1;
+}
+
+/* Welcome Card */
+.welcome{
+    background:white;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.welcome h2{
+    margin-bottom:10px;
+    color:#1f3556;
+}
+
+/* Cards */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.card h3{
+    color:#1f3556;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:50px;
+    color:#2f80ed;
+    font-weight:bold;
+}
+
+/* Table */
+table{
+    width:100%;
+    background:white;
+    border-radius:24px;
+    overflow:hidden;
+    border-collapse:collapse;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+table th{
+    background:linear-gradient(90deg,#2563eb,#a855f7);
+    color:white;
+    padding:20px;
+    font-size:18px;
+}
+
+table td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+.approved{
+    color:green;
+    font-weight:bold;
+}
+
+.pending{
+    color:orange;
+    font-weight:bold;
+}
+
+.rejected{
+    color:red;
+    font-weight:bold;
+}
+
+/* Footer */
+footer{
+    background:linear-gradient(90deg,#2563eb,#a855f7);
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>Leave Management System</h2>
+
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="apply_leave.html">Apply Leave</a>
+    <a href="leave_history.html">Leave History</a>
+    <a href="profile.html">Profile</a>
+    <a href="admin_panel.html">Admin Panel</a>
+    <a href="#" onclick="logout()">Logout</a>
+
+</div>
+
+<div class="main-content">
+
+<div class="container">
+
+<div class="welcome">
+    <h2>Welcome, Employee!</h2>
+    <p>Manage your leave applications and track their status.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Requests</h3>
+<p id="totalRequests">0</p>
+</div>
+
+<div class="card">
+<h3>Approved</h3>
+<p id="approvedRequests">0</p>
+</div>
+
+<div class="card">
+<h3>Rejected</h3>
+<p id="rejectedRequests">0</p>
+</div>
+
+<div class="card">
+<h3>Pending</h3>
+<p id="pendingRequests">0</p>
+</div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Leave Type</th>
+<th>From Date</th>
+<th>To Date</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="dashboardTable"></tbody>
+
+</table>
+
+</div>
+
+<footer> © 2026 Online Leave Application System </footer>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
