@@ -212,3 +212,79 @@ footer{
     background:black;
     color:rgb(7, 207, 252);
 }
+
+html{
+    scroll-behavior: smooth;
+}
+
+/* ---------- About Section ---------- */
+
+.info-section{
+    padding:80px 10%;
+    background:#f8f9fc;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:36px;
+    color:#1b2b5a;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    max-width:850px;
+    margin:auto;
+    line-height:1.8;
+    color:#555;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.info-card{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.info-card h3{
+    margin-bottom:20px;
+    color:#1b2b5a;
+}
+
+.info-card ul{
+    padding-left:20px;
+}
+
+.info-card li{
+    margin-bottom:10px;
+    color:#555;
+}
+
+.contact-box{
+    margin-top:50px;
+    text-align:center;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.contact-box h2{
+    margin-bottom:20px;
+    color:#1b2b5a;
+}
+
+.contact-box p{
+    margin:10px 0;
+    color:#555;
+}
