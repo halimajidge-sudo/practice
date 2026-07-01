@@ -37,10 +37,15 @@ async function registerUser(event) {
     alert(data.message || "Registration successful, but no confirmation message was returned.");
     
     if (data.token && data.userId) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-        window.location.href = "complete_profile.html"; // Redirect to profile completion
-    } else {
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userId", data.userId);
+
+    // ADD THESE
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+
+    window.location.href = "complete_profile.html";
+} else {
         alert("Registration seemed successful, but login credentials were not provided. Cannot proceed.");
     }
 
@@ -72,6 +77,10 @@ async function loginUser(event) {
 
     localStorage.setItem("token", data.token);
     localStorage.setItem("userId", data.user._id); // Store userId for consistency
+
+    localStorage.setItem("userName", data.user.name);
+    localStorage.setItem("userEmail", data.user.email);
+    
     alert("Login Successful!");
 
     if (data.user.profileCompleted) {

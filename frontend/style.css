@@ -72,21 +72,35 @@ nav a:hover{
     gap:20px;
 }
 
-.btn, .btn2{
+.btn,
+.btn-secondary{
+    display:inline-block;
     text-decoration:none;
     padding:15px 30px;
     border-radius:50px;
     font-weight:600;
+    transition:0.3s;
 }
 
 .btn{
-    background:rgb(255, 255, 255);
+    background:white;
     color:#3c69e6;
 }
 
-.btn2{
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
     border:2px solid white;
     color:white;
+    background:transparent;
+}
+
+.btn-secondary:hover{
+    background:white;
+    color:#3c69e6;
+    transform:translateY(-3px);
 }
 
 /* Hero Card */
@@ -221,7 +235,7 @@ html{
 
 .info-section{
     padding:80px 10%;
-    background:#f8f9fc;
+    background:linear-gradient(135deg,#1447d2,#7c3aed,#385caf);
 }
 
 .section-title{
@@ -231,7 +245,7 @@ html{
 
 .section-title h2{
     font-size:36px;
-    color:#1b2b5a;
+    color:white;
     margin-bottom:15px;
 }
 
@@ -239,7 +253,7 @@ html{
     max-width:850px;
     margin:auto;
     line-height:1.8;
-    color:#555;
+    color:white;
 }
 
 .info-grid{
@@ -250,7 +264,7 @@ html{
 }
 
 .info-card{
-    background:#fff;
+    background:linear-gradient(90deg,#1f6bff,#2ea8ff);
     padding:30px;
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,.08);
@@ -258,7 +272,7 @@ html{
 
 .info-card h3{
     margin-bottom:20px;
-    color:#1b2b5a;
+    color:white;
 }
 
 .info-card ul{
@@ -267,13 +281,13 @@ html{
 
 .info-card li{
     margin-bottom:10px;
-    color:#555;
+    color:white;
 }
 
 .contact-box{
     margin-top:50px;
     text-align:center;
-    background:#fff;
+    background:linear-gradient(90deg,#1f6bff,#2ea8ff);
     padding:35px;
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,.08);
@@ -281,10 +295,10 @@ html{
 
 .contact-box h2{
     margin-bottom:20px;
-    color:#1b2b5a;
+    color:white;
 }
 
 .contact-box p{
     margin:10px 0;
-    color:#555;
+    color:white;
 }
